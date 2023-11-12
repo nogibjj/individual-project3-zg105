@@ -6,8 +6,8 @@ import base64
 
 # Load environment variables
 load_dotenv()
-server_h = os.getenv("SERVER_HOSTNAME")
-access_token = os.getenv("ACCESS_TOKEN")
+server_h = "adb-3644312116471444.4.azuredatabricks.net"
+access_token = "dapi8dc3b34593d6c48295f29223e9609b72-3"
 FILESTORE_PATH = "dbfs:/FileStore/individual3"
 headers = {'Authorization': 'Bearer %s' % access_token}
 url = "https://"+server_h+"/api/2.0"
