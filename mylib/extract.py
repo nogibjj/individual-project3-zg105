@@ -65,7 +65,7 @@ def put_file_from_url(url, dbfs_path, overwrite, headers):
 
 
 def extract(
-        url="""https://github.com/fivethirtyeight/data/blob/master/daily-show-guests/daily_show_guests.csv""",
+        url="""https://github.com/fivethirtyeight/data/blob/master/daily-show-guests/daily_show_guests.csv?raw=true""",
         file_path=FILESTORE_PATH+"/daily_show_guest.csv",
         directory=FILESTORE_PATH,
         overwrite=True
