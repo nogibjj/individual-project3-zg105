@@ -16,16 +16,11 @@ def query_transform():
     """
     spark = SparkSession.builder.appName("Query").getOrCreate()
     query = ("""
-    SELECT year, SUM(births) AS total_birth
-    FROM (
-        SELECT year, births
-        FROM birth2000_delta
-        UNION ALL
-        SELECT year, births
-        FROM birth1994_delta
-    ) AS merged_tables 
-    GROUP BY year
-    ORDER BY year
+    SELECT group, count(*) AS cnt
+    FROM daily_show 
+    WHERE year=1999
+    GROUP BY group
+    ORDER BY cnt desc
 """)
     query_result = spark.sql(query)
     return query_result
@@ -40,25 +35,14 @@ def viz():
     else:
         print("No data available. Please investigate.")
 
-    pandas_df = query.select("total_birth", "year").toPandas()
+    pandas_df = query.select("group", "cnt").toPandas()
 
     # Plot a bar plot
     plt.figure(figsize=(15, 8))
-    plt.bar(pandas_df["year"], pandas_df["total_birth"], color='skyblue')
-    plt.title("Total Births for Each Year")
-    plt.xlabel("Year")
-    plt.ylabel("Total Births")
-    plt.show()
-
-
-
-    # Plot a single histogram for all years
-    plt.figure(figsize=(15, 8))
-    plt.hist(pandas_df["total_birth"], bins=20, edgecolor='black')  
-    # Adjust the number of bins as needed
-    plt.title("Total Births for All Years")
-    plt.xlabel("Total Births")
-    plt.ylabel("Frequency")
+    plt.bar(pandas_df["group"], pandas_df["cnt"], color='skyblue')
+    plt.title("Number of different show in 1999")
+    plt.xlabel("group")
+    plt.ylabel("cnt")
     plt.show()
     
 

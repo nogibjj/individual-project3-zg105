@@ -65,10 +65,8 @@ def put_file_from_url(url, dbfs_path, overwrite, headers):
 
 
 def extract(
-        url="""https://github.com/fivethirtyeight/data/blob/master/births/US_births_2000-2014_SSA.csv?raw=true""",
-        url2="""https://github.com/fivethirtyeight/data/blob/master/births/US_births_1994-2003_CDC_NCHS.csv?raw=true""",
-        file_path=FILESTORE_PATH+"/birth2000.csv",
-        file_path2=FILESTORE_PATH+"/birth1994.csv",
+        url="""https://github.com/fivethirtyeight/data/blob/master/daily-show-guests/daily_show_guests.csv""",
+        file_path=FILESTORE_PATH+"/daily_show_guest.csv",
         directory=FILESTORE_PATH,
         overwrite=True
 ):
@@ -77,9 +75,8 @@ def extract(
     mkdirs(path=directory, headers=headers)
     # Add the csv files, no need to check if it exists or not
     put_file_from_url(url, file_path, overwrite, headers=headers)
-    put_file_from_url(url2, file_path2, overwrite, headers=headers)
 
-    return file_path, file_path2
+    return file_path
 
 
 if __name__ == "__main__":
