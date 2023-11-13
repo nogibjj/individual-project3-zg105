@@ -6,7 +6,7 @@ The goal of this project is to build an ETL pipeline on azure Databricks, includ
  - query on the table
 
 ## video link
-
+https://youtu.be/_FBb-G3tc4w
 
 ## Dataset
 The dataset are the date of show and its type. Below are data sources:
