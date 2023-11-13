@@ -1,34 +1,43 @@
-# Week7-miniProj-zg105
+# Individual-project-zg105
 
-This is a simple command-line tool for SQLite database operations. With it, you can:
+The goal of this project is to build an ETL pipeline on azure Databricks, includes:
+ - extract csv file from given url
+ - transform csv file into a sql table
+ - query on the table
 
-- Create a user table
-- Insert some sample users
-- Delete specific users
-- Display current users in the database
+## video link
 
-## Prerequisites
 
-- Python 3.x
-- `click` library
-- `sqlite3` (comes with the standard Python library)
+## Dataset
+The dataset are the date of show and its type. Below are data sources:
+1. https://github.com/fivethirtyeight/data/blob/master/daily-show-guests/daily_show_guests.csv
 
-## Features
+## Steps
+1. Data Extraction:
 
-1. **Create a User Table**: If the table doesn't exist, the script will create a new user table in the database with fields for `id` and `username`.
+  Utilizes the requests library to fetch birth data from specified URLs.
+  
+  Downloads and stores the data in the Databricks FileStore.
 
-2. **Insert Users**: The script will insert three users into the user table.
+2. Databricks Environment Setup:
 
-3. **Delete User**: The script will delete some users.
+  Establishes a connection to the Databricks environment using environment variables for authentication.
 
-4. **Display Users**: The script will then display all current users in the user table.
+3. Data Transformation and Load
 
-## Demo
-run python3 main.py zg105.db to start
+Transform the csv file into a Spark dataframe which is then converted into a Delta Lake Table and stored in the Databricks environement
+![](3.png)
 
-![](pic1.png)
+4. Query Transformation and Vizulization:
 
-## User Guide
-run python3 main.py --help to see a user guide
+Defines a Spark SQL query to perform a predefined transformation on the retrieved data.
 
-![](pic2.png)
+Uses the predifined transformation Spark dataframe to create vizualizations
+
+5. Automated trigger via Github Push:
+
+I utilize the Databricks API to run a job on my Databricks workspace such that when a user pushes to this repo it will intiate a job run
+
+## Result
+![](1.png)
+![](2.png)
