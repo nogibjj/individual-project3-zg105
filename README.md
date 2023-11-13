@@ -15,7 +15,7 @@ The dataset are the date of show and its type. Below are data sources:
 ## Steps
 1. Data Extraction:
 
-  Utilizes the requests library to fetch birth data from specified URLs.
+  Utilizes the requests library to fetch show data from specified URLs.
   
   Downloads and stores the data in the Databricks FileStore.
 
